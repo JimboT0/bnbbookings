@@ -10,7 +10,7 @@ export async function seedSanityData() {
       _id: item.id,
       name: item.name,
       currency: item.currency,
-      description: item.description,
+      content: item.content,
       price: item.price,
       sku: item.sku,
       sizes: item.sizes,

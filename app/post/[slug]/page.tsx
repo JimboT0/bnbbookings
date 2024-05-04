@@ -6,6 +6,7 @@ import { ProductGallery } from "@/components/product-gallery"
 import { ProductInfo } from "@/components/product-info"
 import { BlogPostInfo } from "@/components/blog-post-info"
 import { BlogPostGallery } from "@/components/blog-post-gallery"
+import Booking from "@/components/booking"
 
 interface Props {
   params: {
@@ -23,7 +24,7 @@ export default async function Page({ params }: Props) {
     images,
     price,
     currency,
-    description,
+    content,
     sizes,
     categories,
     colors,

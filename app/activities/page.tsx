@@ -1,11 +1,13 @@
 import { client } from "@/sanity/lib/client"
 import { groq } from "next-sanity"
 
-import { SanityPost } from "@/config/post-inventory"
+import { SanityProduct } from "@/config/inventory"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
-import { BlogGrid } from "@/components/blog-grid"
-import { BlogSort } from "@/components/blog-sort"
+import { ProductFilters } from "@/components/product-filters"
+import { ProductGrid } from "@/components/product-grid"
+import { ProductSort } from "@/components/product-sort"
+// import { seedSanityData } from "@/lib/seed"
 
 interface Props {
   searchParams: {
@@ -20,21 +22,22 @@ interface Props {
 
 export default async function Page({ searchParams }: Props) {
 
+  // await seedSanityData()
+
   const { date = 'desc', price, color, category, size, search } = searchParams
   const priceOrder = price ? `| order(price ${price})` : ""
   const dateOrder = date ? `| order(_createdAt ${date})` : ""
   const order = `${priceOrder} ${dateOrder}`
 
-  const postFilter = `_type == "post"`
+  const productFilter = `_type == "product"`
   const colorFilter = color ? `&& "${color}" in colors` : ""
   const categoryFilter = category ? `&& "${category}" in categories` : ""
   const sizeFilter = size ? `&& "${size}" in sizes` : ""
   const searchFilter = search ? `&& name match "${search}"` : ""
-  const filter = `*[${postFilter}${colorFilter}${categoryFilter}${sizeFilter}${searchFilter}]`
+  const filter = `*[${productFilter}${colorFilter}${categoryFilter}${sizeFilter}${searchFilter}]`
 
-
-  const post = await client.fetch<SanityPost[]>(
-    groq` ${filter} ${order} {
+  const products = await client.fetch<SanityProduct[]>(
+    groq`${filter} ${order} {
     _id,
     _createdAt,
     name,
@@ -42,9 +45,10 @@ export default async function Page({ searchParams }: Props) {
     images,
     currency,
     price,
-    description,
+    content,
     "slug": slug.current
     }`)
+  // await seedSanityData() this seeds data from seedSanityData
 
   return (
     <div>
@@ -53,17 +57,23 @@ export default async function Page({ searchParams }: Props) {
         <main className="mx-auto max-w-6xl px-6">
           <div className="flex items-center justify-between border-b border-gray-200 pb-4 pt-24 dark:border-gray-800">
             <h1 className="text-xl font-bold tracking-tight sm:text-2xl">
-              {post.length} result{post.length === 1 ? "" : "s"}
+              {products.length} result{products.length === 1 ? "" : "s"}
             </h1>
-            <BlogSort />
+            {/* Product Sort */}
+            <ProductSort />
           </div>
 
           <section aria-labelledby="products-heading" className="pb-24 pt-6">
             <h2 id="products-heading" className="sr-only">
-              Posts
+              Products
             </h2>
-            <div className="grid-cols-1">
-              <BlogGrid posts={post} />
+            <div className={cn("grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4", products.length > 0 ? "lg:grid-cols-4" : "lg:grid-cols-[1fr_3fr]")}>
+              <div className="hidden lg:block">
+                {/* Product filters */}
+                <ProductFilters />
+                </div>
+              {/* Product grid */}
+              <ProductGrid products={products} />
             </div>
           </section>
         </main>

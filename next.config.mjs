@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     domains: ["cdn.sanity.io"],
   },
+  experimental: {
+    serverActions: true,
+  },
 }
 
 export default nextConfig

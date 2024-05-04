@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.19",
+    "@hookform/resolvers": "^3.3.4",
     "@radix-ui/react-accordion": "1.1.1",
     "@radix-ui/react-checkbox": "1.0.3",
     "@radix-ui/react-dialog": "1.0.3",
@@ -31,18 +32,23 @@
     "next": "13.4.4",
     "next-sanity": "4.3.2",
     "next-themes": "0.2.1",
+    "nodemailer": "^6.9.13",
     "react": "18.2.0",
     "react-day-picker": "^8.6.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.51.3",
     "react-hot-toast": "^2.4.1",
+    "resend": "^3.2.0",
     "sanity": "3.10.3",
     "shadcn-ui": "0.1.2",
     "sharp": "0.31.3",
+    "sonner": "^1.4.41",
     "stripe": "12.5.0",
     "styled-components": "5.2",
     "tailwind-merge": "1.12.0",
     "tailwindcss-animate": "1.0.5",
-    "use-shopping-cart": "3.1.7"
+    "use-shopping-cart": "3.1.7",
+    "zod": "^3.23.6"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "3.7.1",

@@ -10,6 +10,8 @@ import { getSizeName } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
 
+import { PortableText } from '@portabletext/react';
+
 interface Props {
   product: SanityProduct
 }
@@ -25,8 +27,9 @@ export function ProductInfo({product}: Props) {
       </div>
 
       <div className="mt-6">
-        <h3 className="sr-only">Description</h3>
-        <div className="space-y-6 text-base">{product.description}</div>
+        <h3 className="sr-only">Content</h3>
+        
+        <PortableText value={product.content} />
       </div>
 
       <div className="mt-4">

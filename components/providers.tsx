@@ -2,7 +2,10 @@
 
 import { CartProvider } from "use-shopping-cart"
 
-import { Toaster } from "@/components/ui/toaster"
+
+import { Toaster } from 'sonner'
+
+// import { Toaster } from "@/components/ui/toaster"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
@@ -18,9 +21,11 @@ export function Providers({ children }: Props) {
   stripe={process.env.NEXT_PUBLIC_STRIPE_KEY!}
   >
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <Toaster/>
+      {/* <Toaster/> */}
       {children}
+      <Toaster position='top-right' richColors expand closeButton />
       <TailwindIndicator />
       </ThemeProvider>
     </ CartProvider>
 }
+

@@ -22,7 +22,7 @@ export default async function Page({ params }: Props) {
     images,
     price,
     currency,
-    description,
+    content,
     sizes,
     categories,
     colors,

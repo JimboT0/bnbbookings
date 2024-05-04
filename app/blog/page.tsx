@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils"
 import { BlogGrid } from "@/components/blog-grid"
 import { BlogSort } from "@/components/blog-sort"
 import React from "react"
+import Booking from "@/components/booking"
 
 interface Props {
   searchParams: {
@@ -43,7 +44,7 @@ export default async function Page({ searchParams }: Props) {
     images,
     currency,
     price,
-    description,
+    content,
     "slug": slug.current
     }`)
 
@@ -67,6 +68,7 @@ export default async function Page({ searchParams }: Props) {
               <BlogGrid posts={post} />
             </div>
           </section>
+
         </main>
       </div>
     </div>
