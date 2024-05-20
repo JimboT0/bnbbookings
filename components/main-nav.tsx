@@ -11,7 +11,7 @@ export function MainNav() {
     <div className="pl-10 items-center">
       <Link href="/" className="flex md:font-bold">
         <p>
-          Airbnb 1st Street
+          Rockefeller Plaza
         </p>
       </Link>
     </div>
